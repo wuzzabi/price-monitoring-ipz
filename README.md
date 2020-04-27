@@ -5,7 +5,6 @@
     │   ├── product.controller.ts
     │   ├── receipt.controller.ts
     │   └── user.controller.ts
-    ├── direc_tree.txt
     ├── exceptions
     │   └── HttpException.ts
     ├── interfaces
