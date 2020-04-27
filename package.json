@@ -1,0 +1,41 @@
+{
+  "name": "price-monitoring-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start": "node build/server.js",
+    "prestart": "npm run build",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^13.11.0",
+    "@types/sequelize": "^4.28.8",
+    "bcrypt": "^4.0.1",
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "helmet": "^3.22.0",
+    "hpp": "^0.2.3",
+    "module-alias": "^2.2.2",
+    "mysql2": "^2.1.0",
+    "sequelize": "^4.42.0"
+  },
+  "_moduleAliases": {
+    "@controllers": "build/controllers",
+    "@exceptions": "build/exceptions",
+    "@interfaces": "build/interfaces",
+    "@middlewares": "build/middlewares",
+    "@models": "build/models",
+    "@routes": "build/routes",
+    "@services": "build/services"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+      "outDir": "./build",
+      "target": "es5",
+      "noImplicitAny": false,
+      "sourceMap": true,
+      "jsx": "preserve",
+      "experimentalDecorators": true,
+      "moduleResolution": "node",
+      "removeComments": true,
+      "baseUrl": "./",
+      "paths": {
+        "@controllers/*": ["controllers/*"],
+        "@exceptions/*": ["exceptions/*"],
+        "@interfaces/*": ["interfaces/*"],
+        "@middlewares/*": ["middlewares/*"],
+        "@models/*": ["models/*"],
+        "@routes/*": ["routes/*"],
+        "@services/*": ["services/*"],
+      }
+  },
+  "lib": ["DOM", "es6"],
+  "exclude": [
+      "node_modules",
+      "test.ts"
+  ]
+}
