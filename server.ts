@@ -8,6 +8,7 @@ import * as hpp from 'hpp'
 import authMiddleware from '@middlewares/auth.middleware'
 import { User } from '@models/user.model'
 import AuthRoute from '@routes/auth.route'
+import CartRoute from '@routes/cart.route'
 import 'dotenv/config'
 
 class Server {
@@ -48,22 +49,8 @@ class Server {
 
     private initializeRouting(): void {
 
-        this.app.get('/', authMiddleware, (req, res) => {
-            console.log(req.query)
-            User.findAll()
-            .then(users => res.json(users))
-            .catch((err: Error) => {
-                console.error(err.message)
-                return res.send('smth went wrong')
-            })
-        })
-
-        this.app.get('/login', (req, res) => {
-            req.session.loggedin = true
-            return res.json({ok: true})
-        })
-
         this.app.use('/', new AuthRoute().router)
+        this.app.use('/', new CartRoute().router)
     }
 
     public listen() {

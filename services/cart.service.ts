@@ -1,3 +1,5 @@
+import { Products } from '@models/products.model'
+import IProduct from '@interfaces/products.interface'
 export default class CartService {
     items: object
     totalCartItems: number
@@ -7,7 +9,8 @@ export default class CartService {
         this.totalCartItems = cart.totalCartItems || 0
     }
 
-    public addItem(item: IItem, id: number) {
+    public async addItem(id: number) {
+        const item: IProduct = await Products.findOne({where: {id: id}})
         let cartItem: IItem = this.items[id]
         if(!cartItem) {
             cartItem = this.items[id] = item
@@ -32,7 +35,7 @@ export default class CartService {
 }
 
 interface IItem {
-    id: number
-    name: string
-    url_img: string
+    readonly id?: number
+    readonly name?: string
+    readonly urlImg?: string
 }
