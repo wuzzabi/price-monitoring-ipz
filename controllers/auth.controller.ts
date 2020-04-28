@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from 'express'
 import AuthService from '@services/auth.service'
-import { Http2ServerRequest } from 'http2'
 import HttpException from '@exceptions/HttpException'
 
 export default class AuthController {
