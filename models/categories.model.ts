@@ -15,7 +15,7 @@ export const Categories: sequelize.Model<ICategory, {}> = dbInstance.define<ICat
         allowNull: false,
         unique: true
     },
-    urlImg: {
+    url_img: {
         type: sequelize.STRING,
         allowNull: false
     }

@@ -1,5 +1,5 @@
-import { Products } from '@models/products.model'
-import IProduct from '@interfaces/products.interface'
+import HttpException from '@exceptions/HttpException'
+
 export default class CartService {
     items: object
     totalCartItems: number
@@ -9,15 +9,14 @@ export default class CartService {
         this.totalCartItems = cart.totalCartItems || 0
     }
 
-    public async addItem(id: number) {
-        const item: IProduct = await Products.findOne({where: {id: id}})
+    public addItem(item: IItem, id: number) {
+        if(!item) throw new HttpException(409, 'No such product in DB.')
+
         let cartItem: IItem = this.items[id]
         if(!cartItem) {
             cartItem = this.items[id] = item
             this.totalCartItems++
         }
-        
-        return
     }
 
     public removeItem(id: number) {
@@ -37,5 +36,5 @@ export default class CartService {
 interface IItem {
     readonly id?: number
     readonly name?: string
-    readonly urlImg?: string
+    readonly url_img?: string
 }

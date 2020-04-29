@@ -15,7 +15,7 @@ export const Shops: sequelize.Model<IShop, {}> = dbInstance.define<IShop, {}>('S
         allowNull: false,
         unique: true
     },
-    urlImg: {
+    url_img: {
         type: sequelize.STRING,
         allowNull: false
     }

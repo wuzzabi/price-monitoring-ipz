@@ -16,7 +16,7 @@ export const Receipts: sequelize.Model<IReceipt, {}> = dbInstance.define<IReceip
         allowNull: false,
         defaultValue: false
     },
-    urlImg: {
+    url_img: {
         type: sequelize.STRING,
         allowNull: false
     },
