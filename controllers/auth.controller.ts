@@ -23,7 +23,7 @@ export default class AuthController {
 
         try {
             const result = await this.authService.login(userData)
-            res.session = Object.assign(req.session, result.session)
+            req.session = Object.assign(req.session, result.session)
             res.status(200).json({ result: req.session })
         } catch(error) {
             next(error)

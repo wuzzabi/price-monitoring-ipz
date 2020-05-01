@@ -14,10 +14,10 @@ export default class CartRoute implements IRoute {
 
     public initializeRoutes() {
         this.router.route(this.path)
-            .get(this.cartController.getProductsFromCart)
+            .get(this.cartController.GetProductsFromCart)
 
         this.router.route(`${this.path}/:id`)
-            .post(this.cartController.addToCart)
-            .delete(this.cartController.removeFromCart)
+            .post(this.cartController.AddToCart)
+            .delete(this.cartController.RemoveFromCart)
     }
 }

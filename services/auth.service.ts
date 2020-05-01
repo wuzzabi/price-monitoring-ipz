@@ -30,7 +30,7 @@ export default class AuthService {
         const isPasswordMatching: boolean = await bcrypt.compare(password, findUser.password)
         if(!isPasswordMatching) throw new HttpException(409, 'Incorrect Password or Email!')
 
-        const session = { loggedin: true, email: email }
+        const session = { loggedin: true, email: email, user_id: findUser.id }
         return { session, findUser }
     }
 

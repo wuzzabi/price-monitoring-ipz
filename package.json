@@ -36,6 +36,7 @@
     "@middlewares": "build/middlewares",
     "@models": "build/models",
     "@routes": "build/routes",
-    "@services": "build/services"
+    "@services": "build/services",
+    "@helpers": "build/helpers"
   }
 }

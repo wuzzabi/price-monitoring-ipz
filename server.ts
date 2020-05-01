@@ -6,9 +6,9 @@ import * as compression from 'compression'
 import * as bodyParser from 'body-parser'
 import * as hpp from 'hpp'
 import authMiddleware from '@middlewares/auth.middleware'
-import { User } from '@models/user.model'
 import AuthRoute from '@routes/auth.route'
 import CartRoute from '@routes/cart.route'
+import CartSetRoute from '@routes/cartset.route'
 import 'dotenv/config'
 
 class Server {
@@ -51,6 +51,7 @@ class Server {
 
         this.app.use('/', new AuthRoute().router)
         this.app.use('/', new CartRoute().router)
+        this.app.use('/', new CartSetRoute().router)
     }
 
     public listen() {

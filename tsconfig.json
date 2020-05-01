@@ -17,6 +17,7 @@
         "@models/*": ["models/*"],
         "@routes/*": ["routes/*"],
         "@services/*": ["services/*"],
+        "@helpers/*": ["helpers/*"]
       }
   },
   "lib": ["DOM", "es6"],
