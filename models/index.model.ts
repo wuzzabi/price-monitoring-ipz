@@ -34,7 +34,8 @@ export default class Database {
                 max: 30,
                 idle: 10000,
                 acquire: 30000,
-            }
+            },
+            logging: false,
         })
 
         this.database.authenticate()
