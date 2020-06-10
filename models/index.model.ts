@@ -39,7 +39,7 @@ export default class Database {
         })
 
         this.database.authenticate()
-        .then(() => console.log('Connection has been established successfully'))
+        // .then(() => console.log('Connection has been established successfully'))
         .catch((err: Error) => {
             console.error('Unable to connect to database: ', err)
         })
