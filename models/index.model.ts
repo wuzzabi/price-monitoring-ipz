@@ -30,8 +30,8 @@ export default class Database {
                 collate: 'utf8mb4_general_ci'
             },
             pool: {
-                min: 0,
-                max: 30,
+                min: this.minpool,
+                max: this.maxpool,
                 idle: 10000,
                 acquire: 30000,
             },
