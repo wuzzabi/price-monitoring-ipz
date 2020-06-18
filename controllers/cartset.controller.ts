@@ -47,7 +47,7 @@ export default class CartSetController {
 
         try{
             const result = await this.cartSetDBService.getCartSet(id)
-            res.status(200).json(result)
+            res.status(200).json({ data: result})
         } catch(error) {
             next(error)
         }

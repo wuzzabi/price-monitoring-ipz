@@ -36,7 +36,7 @@ export default class CartController {
         try {
             if(typeof(req.session.cart) === 'undefined' || req.session.cart.items.length === 0) res.status(200).json({ message: 'Cart is empty.' })
             const result = await this.cartService.getItemsFromShops(req.session.cart.items)
-            res.status(200).json(result)
+            res.status(200).json({ data: result })
         } catch(error) {
             next(error)
         }

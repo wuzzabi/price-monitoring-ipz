@@ -12,7 +12,7 @@ export default class AuthController {
 
         try {
             const result = await this.authService.signup(userData)
-            res.status(201).json({ result: result })
+            res.status(201).json({ data: result })
         } catch(error) {
             next(error)
         }
@@ -24,7 +24,7 @@ export default class AuthController {
         try {
             const result = await this.authService.login(userData)
             req.session = Object.assign(req.session, result.session)
-            res.status(200).json({ result: req.session })
+            res.status(200).json({ data: req.session })
         } catch(error) {
             next(error)
         }
