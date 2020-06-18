@@ -11,7 +11,7 @@ export default class ProductController {
 
         try {
             const result = await this.productService.getProductsByCategory(id)
-            res.status(200).json(result)
+            res.status(200).json({ data: result })
         } catch(error) {
             next(error)
         }
@@ -24,6 +24,29 @@ export default class ProductController {
             const result = await this.productService.createProduct(productData)
             res.status(201).json({ message: 'Product successfully created.' })
         } catch (error) {
+            next(error)
+        }
+    }
+
+    public DeleteProduct = async (req: Request, res: Response, next: NextFunction) => {
+        const { id } = req.params
+
+        try {
+            const result = await this.productService.deleteProduct(id)
+            res.status(200).json({ message: 'Product successfully deleted.' })
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    public UpdateProduct = async (req: Request, res: Response, next: NextFunction) => {
+        const { id } = req.params
+        const productData = req.body
+
+        try {
+            const result = await this.productService.updateProduct(id, productData)
+            res.status(200).json({ message: 'Product successfully updated.' })
+        } catch(error) {
             next(error)
         }
     }

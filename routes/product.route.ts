@@ -18,5 +18,7 @@ export default class ProductRoute implements IRoute {
 
         this.router.route(`${this.path}/:id`)
             .get(this.productController.GetProductsByCategory)
+            .delete(this.productController.DeleteProduct)
+            .put(this.productController.UpdateProduct)
     }
 }

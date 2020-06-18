@@ -24,7 +24,7 @@ export default class CartSetController {
 
         try {
             const result = await this.cartSetDBService.createCartSet(cart.items ? cart.items : [], user_id, name)
-            res.status(200).json({ message: 'Cart set successfully created.' })
+            res.status(201).json({ message: 'Cart set successfully created.' })
         } catch(error) {
             next(error)
         }
