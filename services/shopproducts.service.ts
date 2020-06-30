@@ -1,11 +1,13 @@
 import { ShopProducts } from '@models/shopProducts.model'
 import IShop from '@interfaces/shopProduct.interface'
 import HttpException from '@exceptions/HttpException'
+import { isNumber } from 'util'
 
 export default class ShopProductsService {
     constructor() {}
 
     public async getShopProducts(shopId: number): Promise<IShop[]> {
+        shopId = isNumber(shopId) ? shopId : 1
         const findShopProducts: IShop[] = await ShopProducts.findAll({
             where : { id: shopId }
         })

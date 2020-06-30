@@ -1,12 +1,13 @@
 import HttpException from "@exceptions/HttpException"
 import { Products } from "@models/products.model"
 import IProduct from '@interfaces/products.interface'
+import { isNumber } from "util"
 
 export default class ProductService {
     constructor() {}
 
     public async getProductsByCategory(categoryId: number): Promise<IProduct[]> {
-        categoryId = Number(categoryId)
+        categoryId = isNumber(categoryId) ? categoryId : 1
 
         const findProducts: IProduct[] = await Products.findAll({
             where: {category_id: categoryId},
