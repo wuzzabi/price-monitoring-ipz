@@ -7,12 +7,13 @@ import { User } from "@models/user.model"
 import insertionSort from "@helpers/insertionsort.helper"
 import IProduct from "@interfaces/products.interface"
 import { Products } from "@models/products.model"
+import { isNumber } from "util"
 
 export default class CartSetService implements ICart {
     constructor() {}
 
     public async addToCart(cart: ISessionCart, cartSetId: number): Promise<ISessionCart> {
-        cartSetId = Number(cartSetId)
+        cartSetId = isNumber(cartSetId) ? cartSetId : 1
         let { items, totalCartItems } = cart
         items = items || []
         totalCartItems = totalCartItems || 0

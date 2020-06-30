@@ -22,7 +22,7 @@ export const User: sequelize.Model<IUser, {}> = dbInstance.define<IUser, {}>('Us
     },
     verified: {
         type: sequelize.BOOLEAN,
-        defaultValue: true,
+        defaultValue: false,
         allowNull: false
     },
     balance: {

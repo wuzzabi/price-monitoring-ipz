@@ -24,7 +24,7 @@ export default class CartSetController {
 
         try {
             const result = await this.cartSetDBService.createCartSet(cart.items ? cart.items : [], user_id, name)
-            res.status(200).json({ message: 'Cart set successfully created.' })
+            res.status(201).json({ message: 'Cart set successfully created.' })
         } catch(error) {
             next(error)
         }
@@ -47,7 +47,7 @@ export default class CartSetController {
 
         try{
             const result = await this.cartSetDBService.getCartSet(id)
-            res.status(200).json(result)
+            res.status(200).json({ data: result})
         } catch(error) {
             next(error)
         }

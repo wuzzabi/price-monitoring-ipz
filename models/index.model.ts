@@ -30,15 +30,16 @@ export default class Database {
                 collate: 'utf8mb4_general_ci'
             },
             pool: {
-                min: 0,
-                max: 30,
+                min: this.minpool,
+                max: this.maxpool,
                 idle: 10000,
                 acquire: 30000,
-            }
+            },
+            logging: false,
         })
 
         this.database.authenticate()
-        .then(() => console.log('Connection has been established successfully'))
+        // .then(() => console.log('Connection has been established successfully'))
         .catch((err: Error) => {
             console.error('Unable to connect to database: ', err)
         })
