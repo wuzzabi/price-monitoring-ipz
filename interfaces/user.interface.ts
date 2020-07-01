@@ -6,5 +6,6 @@ export default interface IUser {
     readonly role_id?: number,
     readonly balance?: number,
     readonly regTime?: Date,
-    readonly IP?: string
+    readonly IP?: string,
+    readonly Role?: any
 }

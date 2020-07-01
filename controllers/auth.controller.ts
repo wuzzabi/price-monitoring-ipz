@@ -58,7 +58,7 @@ export default class AuthController {
 
         try {
             const result = await this.authService.changePassword(userData)
-            res.status(200).json({ message: 'New password has been sent to the mail.' })
+            res.status(200).json({ message: 'New password has been sent to the email.' })
         } catch(error) {
             next(error)
         }
