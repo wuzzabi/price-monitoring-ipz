@@ -1,6 +1,8 @@
 const Router = require('express').Router()
 import IRoute from '@interfaces/routes.interface'
 import ShopProductsController from '@controllers/shopproducts.controller'
+import { isAdminMiddleware } from '@middlewares/permission.middleware'
+import authMiddleware from '@middlewares/auth.middleware'
 
 export default class ShopProductsRoute implements IRoute {
     public path = '/shopproducts'
@@ -14,11 +16,11 @@ export default class ShopProductsRoute implements IRoute {
 
     private initializeRouter() {
         this.router.route(`${this.path}/create`)
-            .post(this.shopProductsController.CreateShopProduct)
+            .post(isAdminMiddleware, this.shopProductsController.CreateShopProduct)
 
         this.router.route(`${this.path}/:id`)
-            .get(this.shopProductsController.GetShopProducts)
-            .put(this.shopProductsController.UpdateShopProduct)
-            .delete(this.shopProductsController.DeleteShopProduct)
+            .get(authMiddleware, this.shopProductsController.GetShopProducts)
+            .put(isAdminMiddleware, this.shopProductsController.UpdateShopProduct)
+            .delete(isAdminMiddleware, this.shopProductsController.DeleteShopProduct)
     }
 }

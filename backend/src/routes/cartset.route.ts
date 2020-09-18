@@ -1,6 +1,7 @@
 const Router = require('express').Router()
 import IRoute from '@interfaces/routes.interface'
 import CartSetController from '@controllers/cartset.controller'
+import authMiddleware from '@middlewares/auth.middleware'
 
 export default class CartSetRoute implements IRoute {
     public router = Router
@@ -13,11 +14,11 @@ export default class CartSetRoute implements IRoute {
     }
 
     private initializeRoutes() {
-        this.router.post(`${this.path}/create`, this.cartSetController.CreateCartSet)
+        this.router.post(`${this.path}/create`, authMiddleware, this.cartSetController.CreateCartSet)
 
         this.router.route(`${this.path}/:id`)
-            .get(this.cartSetController.GetCartSet)
-            .post(this.cartSetController.AddToCart)
-            .delete(this.cartSetController.DeleteCartSet)
+            .get(authMiddleware, this.cartSetController.GetCartSet)
+            .post(authMiddleware, this.cartSetController.AddToCart)
+            .delete(authMiddleware, this.cartSetController.DeleteCartSet)
     }
 }

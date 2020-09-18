@@ -8,7 +8,7 @@
       "experimentalDecorators": true,
       "moduleResolution": "node",
       "removeComments": true,
-      "baseUrl": "./",
+      "baseUrl": "./src",
       "paths": {
         "@controllers/*": ["controllers/*"],
         "@exceptions/*": ["exceptions/*"],

@@ -4,6 +4,7 @@ import IUser from '@interfaces/user.interface'
 import HttpException from '@exceptions/HttpException'
 import { User } from '@models/user.model'
 import MailService from './mail.service'
+import { Roles } from '@models/roles.model'
 import 'dotenv/config'
 
 export default class AuthService {
@@ -32,13 +33,19 @@ export default class AuthService {
         const { email, password } = userData
         if(!(email && password)) throw new HttpException(409, 'Please enter Email and Password!')
 
-        const findUser: IUser = await User.findOne({ where: { email: email } })
+        const findUser: IUser = await User.findOne({
+            where: { email: email },
+            include: [{
+                model: Roles,
+                attributes: ['name']
+            }]
+        })
         if(!findUser) throw new HttpException(409, 'User not found!')
 
         const isPasswordMatching: boolean = await bcrypt.compare(password, findUser.password)
         if(!isPasswordMatching) throw new HttpException(409, 'Incorrect Password or Email!')
 
-        const session = { loggedin: true, email: email, user_id: findUser.id }
+        const session = { loggedin: true, email: email, user_id: findUser.id, role: findUser.Role.name }
         return { session, findUser }
     }
 
@@ -59,7 +66,7 @@ export default class AuthService {
     public async changePassword(userData: IUser): Promise<boolean> {
         const { email } = userData
         const findUser: IUser = await User.findOne({ where: { email: email } })
-        if(!findUser) throw new HttpException(409, 'User is not registered with such mail!')
+        if(!findUser) throw new HttpException(409, 'User is not registered with such email!')
 
         const generatedPassword: string = Crypto.randomBytes(16).toString('base64').slice(0, 16)
         const hashedPassword: string = await bcrypt.hash(generatedPassword, Number(process.env.SALTROUNDS))

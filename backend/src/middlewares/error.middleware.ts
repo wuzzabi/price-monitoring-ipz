@@ -7,7 +7,11 @@ function errorMiddleware(error: HttpException, req: Request, res: Response, next
     
     console.error('[ERROR] ', status, message)
 
-    res.status(status).json({ message: message })
+    res.status(status).json({ error: message })
 }
 
-export default errorMiddleware
+function notFoundMiddleware(req: Request, res: Response, next: NextFunction) {
+    next(new HttpException(404, 'Not Found!'))
+}
+
+export { errorMiddleware, notFoundMiddleware }

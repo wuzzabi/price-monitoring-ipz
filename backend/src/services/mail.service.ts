@@ -10,7 +10,7 @@ export default class MailService {
         )
     }
 
-    public async sendVerificationMail(email: string, url: string) {
+    public async sendVerificationMail(email: string, url: string): Promise<void> {
         let options: nodemailer.SendMailOptions = { 
             from: `${process.env.EMAIL_USERNAME}`,
             to: email,
@@ -22,7 +22,7 @@ export default class MailService {
         this._transporter.sendMail(options)
     }
 
-    public async sendNewPassword(email: string, password: string) {
+    public async sendNewPassword(email: string, password: string): Promise<void> {
         let options: nodemailer.SendMailOptions = { 
             from: `${process.env.EMAIL_USERNAME}`,
             to: email,
@@ -34,7 +34,7 @@ export default class MailService {
         this._transporter.sendMail(options)
     }
 
-    public sendMail(to: string, subject: string, content: string) { 
+    public async sendMail(to: string, subject: string, content: string): Promise<void> { 
         let options: nodemailer.SendMailOptions = { 
             from: `${process.env.EMAIL_USERNAME}`,
             to: to,

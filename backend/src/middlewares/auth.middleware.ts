@@ -1,11 +1,10 @@
 import { Request, Response, NextFunction } from 'express'
+import HttpException from '@exceptions/HttpException'
 
 function authMiddleware(req: Request, res: Response, next: NextFunction) {
-    if(req.session?.loggedin) {
-        next()
-    } else {
-        return res.status(403).send('You need to login')
-    }
+    if(req.session?.loggedin) return next()
+
+    next(new HttpException(403, 'Access denied!'))
 }
 
 export default authMiddleware

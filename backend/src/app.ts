@@ -6,7 +6,7 @@ import * as compression from 'compression'
 import * as bodyParser from 'body-parser'
 import * as hpp from 'hpp'
 import IRoute from '@interfaces/routes.interface'
-import errorMiddleware from '@middlewares/error.middleware'
+import { errorMiddleware, notFoundMiddleware } from '@middlewares/error.middleware'
 import 'dotenv/config'
 
 class App {
@@ -54,6 +54,7 @@ class App {
     }
 
     private initializeErrorHandling() {
+        this.app.use(notFoundMiddleware)
         this.app.use(errorMiddleware)
     }
 
